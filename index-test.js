@@ -18,17 +18,16 @@ const randomIntegerFromInterval = (min, max) => {
 
 const changeBgColor = () => {
     document.body.style.backgroundColor = colors[randomIntegerFromInterval(0, colors.length - 1)];
-}
-  
+  }
 const startChangeBgColor = function(e) {
   timerId = setInterval(changeBgColor, 1000);
-    refs.startButton.disabled = true;
+  refs.startButton.removeEventListener('click', startChangeBgColor);
   console.log(e.target);
 }
 
 const stopChangeBgColor = function () {
   clearInterval(timerId);
-    refs.startButton.disabled = false;
+  refs.startButton.addEventListener('click', startChangeBgColor);
 }
 
 refs.startButton.addEventListener('click', startChangeBgColor);
